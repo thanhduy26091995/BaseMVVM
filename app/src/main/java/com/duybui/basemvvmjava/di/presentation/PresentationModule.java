@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 
+import com.duybui.basemvvmjava.ui.base.DialogsManager;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -36,6 +38,11 @@ public class PresentationModule {
     @Provides
     Context context(Activity activity) {
         return activity;
+    }
+
+    @Provides
+    DialogsManager dialogsManager(FragmentManager fragmentManager) {
+        return new DialogsManager(fragmentManager);
     }
 
 }
