@@ -2,6 +2,7 @@ package com.duybui.basemvvmjava.di.application;
 
 
 import android.app.Application;
+import android.util.Log;
 
 import com.duybui.basemvvmjava.data.network.ApiInterface;
 import com.duybui.basemvvmjava.utils.AppConstants;

@@ -12,6 +12,7 @@ import com.duybui.basemvvmjava.data.network.ApiInterface;
 import com.duybui.basemvvmjava.data.response.RandomUserResponse;
 import com.duybui.basemvvmjava.ui.base.BaseActivity;
 import com.duybui.basemvvmjava.ui.base.DialogsManager;
+import com.duybui.basemvvmjava.ui.base.ServerErrorDialogFragment;
 import com.duybui.basemvvmjava.ui.base.ViewModelFactory;
 import com.duybui.basemvvmjava.ui.users.UserAdapter;
 import com.duybui.basemvvmjava.ui.users.UserViewModel;
@@ -39,7 +40,8 @@ public class MainActivity extends BaseActivity {
     RecyclerView mRecycler;
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    @Inject UserViewModel userViewModel;
+    @Inject
+    UserViewModel userViewModel;
 
 
     @Override
@@ -58,6 +60,10 @@ public class MainActivity extends BaseActivity {
         //listen live data
         userViewModel.getUserList().observe(this, users -> {
             userAdapter.setData(users);
+        });
+        //show error message
+        userViewModel.getError().observe(this, error -> {
+            dialogsManager.showDialog(ServerErrorDialogFragment.newInstance("Error", error));
         });
     }
 
