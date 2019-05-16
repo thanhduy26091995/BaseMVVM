@@ -1,7 +1,7 @@
 package com.duybui.basemvvmjava.ui.base;
 
-import android.support.annotation.UiThread;
-import android.support.v4.app.Fragment;
+import androidx.annotation.UiThread;
+import androidx.fragment.app.Fragment;
 
 import com.duybui.basemvvmjava.MyApplication;
 import com.duybui.basemvvmjava.di.application.ApplicationComponent;
@@ -25,6 +25,9 @@ public abstract class BaseFragment extends Fragment {
     }
 
     private ApplicationComponent getApplicationComponent() {
-        return ((MyApplication) getActivity().getApplication()).getApplicationComponent();
+        if (getActivity() != null) {
+            return ((MyApplication) getActivity().getApplication()).getApplicationComponent();
+        }
+        return null;
     }
 }

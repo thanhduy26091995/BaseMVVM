@@ -4,6 +4,7 @@ package com.duybui.basemvvmjava.di.application;
 import android.app.Application;
 
 import com.duybui.basemvvmjava.data.network.ApiInterface;
+import com.duybui.basemvvmjava.utils.AppConstants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -15,7 +16,6 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -32,7 +32,7 @@ public class ApiModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
-                .baseUrl("https://simplifiedcoding.net/demos/")
+                .baseUrl(AppConstants.BASE_URL)
                 .build();
     }
 
@@ -45,8 +45,8 @@ public class ApiModule {
     @Singleton
     @Provides
     OkHttpClient okHttpClient(Cache cache) {
-        Interceptor interceptor = new HttpLoggingInterceptor();
-        ((HttpLoggingInterceptor) interceptor).setLevel(HttpLoggingInterceptor.Level.BODY);
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         return new OkHttpClient.Builder()
                 .addInterceptor(interceptor)

@@ -7,6 +7,7 @@ import com.duybui.basemvvmjava.di.application.ApplicationComponent;
 import com.duybui.basemvvmjava.di.application.ApplicationModule;
 import com.duybui.basemvvmjava.di.application.DaggerApplicationComponent;
 
+
 public class MyApplication extends Application {
 
     private ApplicationComponent applicationComponent;
@@ -14,6 +15,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+       // applicationComponent = null;
 
         applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))

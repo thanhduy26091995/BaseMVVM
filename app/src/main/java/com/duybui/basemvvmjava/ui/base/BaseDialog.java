@@ -1,7 +1,7 @@
 package com.duybui.basemvvmjava.ui.base;
 
-import android.support.annotation.UiThread;
-import android.support.v4.app.DialogFragment;
+import androidx.annotation.UiThread;
+import androidx.fragment.app.DialogFragment;
 
 import com.duybui.basemvvmjava.MyApplication;
 import com.duybui.basemvvmjava.di.application.ApplicationComponent;
