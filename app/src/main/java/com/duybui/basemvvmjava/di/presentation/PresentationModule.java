@@ -21,10 +21,13 @@ import dagger.Provides;
 @Module
 public class PresentationModule {
 
-    private final FragmentActivity mActivity;
+    private FragmentActivity mActivity;
 
     public PresentationModule(FragmentActivity fragmentActivity) {
         mActivity = fragmentActivity;
+    }
+
+    public PresentationModule() {
     }
 
     @Provides
@@ -56,10 +59,4 @@ public class PresentationModule {
     UserAdapter userAdapter(Activity activity) {
         return new UserAdapter(activity);
     }
-
-    @Provides
-    UserViewModel userViewModel(ApiInterface apiInterface) {
-        return new UserViewModel(apiInterface);
-    }
-
 }

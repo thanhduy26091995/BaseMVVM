@@ -2,14 +2,6 @@ package com.duybui.basemvvmjava;
 
 import android.os.Bundle;
 
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-
-import com.duybui.basemvvmjava.data.network.ApiInterface;
-import com.duybui.basemvvmjava.data.response.RandomUserResponse;
 import com.duybui.basemvvmjava.ui.base.BaseActivity;
 import com.duybui.basemvvmjava.ui.base.DialogsManager;
 import com.duybui.basemvvmjava.ui.base.ServerErrorDialogFragment;
@@ -19,16 +11,13 @@ import com.duybui.basemvvmjava.ui.users.UserViewModel;
 
 import javax.inject.Inject;
 
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class MainActivity extends BaseActivity {
 
-    @Inject
-    Retrofit retrofit;
     @Inject
     DialogsManager dialogsManager;
     @Inject
@@ -36,12 +25,10 @@ public class MainActivity extends BaseActivity {
     @Inject
     ViewModelFactory viewModelFactory;
 
+    UserViewModel userViewModel;
+
     @BindView(R.id.rv_users)
     RecyclerView mRecycler;
-
-    private static final String TAG = MainActivity.class.getSimpleName();
-    @Inject
-    UserViewModel userViewModel;
 
 
     @Override
@@ -58,15 +45,12 @@ public class MainActivity extends BaseActivity {
         //call API to get data
         userViewModel.getRandomUser(10);
         //listen live data
-        userViewModel.getUserList().observe(this, users -> {
-            userAdapter.setData(users);
-        });
+        userViewModel.getUserList().observe(this, users ->
+                userAdapter.setData(users));
         //show error message
-        userViewModel.getError().observe(this, error -> {
-            dialogsManager.showDialog(ServerErrorDialogFragment.newInstance("Error", error));
-        });
+        userViewModel.getError().observe(this, error ->
+                dialogsManager.showDialog(ServerErrorDialogFragment.newInstance("Error", error)));
     }
-
 
     private void setupRecyclerView() {
         mRecycler.setLayoutManager(new LinearLayoutManager(this));

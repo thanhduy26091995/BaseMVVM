@@ -1,5 +1,6 @@
 package com.duybui.basemvvmjava.ui.base;
 
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;

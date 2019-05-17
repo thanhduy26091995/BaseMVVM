@@ -1,5 +1,7 @@
 package com.duybui.basemvvmjava.di.presentation;
 
+import android.app.Application;
+
 import androidx.lifecycle.ViewModel;
 
 import com.duybui.basemvvmjava.data.network.ApiInterface;
@@ -37,7 +39,7 @@ public class ViewModelModule {
     @Provides
     @IntoMap
     @ViewModelKey(UserViewModel.class)
-    ViewModel userViewModel(ApiInterface apiInterface) {
-        return new UserViewModel(apiInterface);
+    ViewModel userViewModel(Application application) {
+        return new UserViewModel(application);
     }
 }

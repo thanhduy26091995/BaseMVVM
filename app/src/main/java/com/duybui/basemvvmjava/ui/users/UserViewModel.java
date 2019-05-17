@@ -1,10 +1,11 @@
 package com.duybui.basemvvmjava.ui.users;
 
-import android.util.Log;
+import android.app.Application;
 
 import com.duybui.basemvvmjava.data.models.User;
 import com.duybui.basemvvmjava.data.network.ApiInterface;
 import com.duybui.basemvvmjava.data.response.RandomUserResponse;
+import com.duybui.basemvvmjava.ui.base.BaseViewModel;
 
 import java.util.List;
 
@@ -13,40 +14,27 @@ import javax.inject.Inject;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.BiConsumer;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-public class UserViewModel extends ViewModel {
+public class UserViewModel extends BaseViewModel {
     private MutableLiveData<List<User>> userList = new MutableLiveData<>();
-    private MutableLiveData<String> error = new MutableLiveData<>();
 
-    private CompositeDisposable disposable;
+    @Inject
+    ApiInterface apiInterface;
 
-
-    private final ApiInterface apiInterface;
-
-    public UserViewModel(ApiInterface apiInterface) {
-        this.apiInterface = apiInterface;
-        disposable = new CompositeDisposable();
+    public UserViewModel(Application application) {
+        super(application);
+        getPresentationComponent().inject(this);
     }
 
     public void getRandomUser(int number) {
         apiInterface.getRandomUser(number)
                 .subscribeOn(Schedulers.io())
-                .map(randomUserResponse -> randomUserResponse.getUsers())
-                .flatMap(response -> Observable.fromIterable(response))
+                .map(RandomUserResponse::getUsers)
+                .flatMap(Observable::fromIterable)
                 .filter(user -> user.getGender().equalsIgnoreCase("female"))
                 .toList()
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new SingleObserver<List<User>>() {
@@ -62,13 +50,9 @@ public class UserViewModel extends ViewModel {
 
             @Override
             public void onError(Throwable e) {
-                error.setValue(e.toString());
+                setError(e.toString());
             }
         });
-    }
-
-    public MutableLiveData<String> getError() {
-        return error;
     }
 
     public MutableLiveData<List<User>> getUserList() {
