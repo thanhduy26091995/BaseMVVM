@@ -2,19 +2,16 @@ package com.duybui.basemvvmjava.di.presentation;
 
 import android.app.Activity;
 import android.content.Context;
-
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-
 import android.view.LayoutInflater;
 
-import com.duybui.basemvvmjava.data.network.ApiInterface;
+import com.duybui.basemvvmjava.data.network.ApiRepository;
 import com.duybui.basemvvmjava.ui.base.DialogsManager;
 import com.duybui.basemvvmjava.ui.users.UserAdapter;
-import com.duybui.basemvvmjava.ui.users.UserViewModel;
 
 import javax.inject.Singleton;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import dagger.Module;
 import dagger.Provides;
 
@@ -59,4 +56,6 @@ public class PresentationModule {
     UserAdapter userAdapter(Activity activity) {
         return new UserAdapter(activity);
     }
+
 }
+

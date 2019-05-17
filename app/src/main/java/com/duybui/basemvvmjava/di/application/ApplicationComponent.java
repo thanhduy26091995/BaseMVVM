@@ -1,6 +1,8 @@
 package com.duybui.basemvvmjava.di.application;
 
 
+import android.app.Application;
+
 import com.duybui.basemvvmjava.di.presentation.PresentationComponent;
 import com.duybui.basemvvmjava.di.presentation.PresentationModule;
 import com.duybui.basemvvmjava.di.service.ServiceComponent;
@@ -16,4 +18,6 @@ public interface ApplicationComponent {
     PresentationComponent newPresentationComponent(PresentationModule presentationModule);
 
     ServiceComponent newServiceComponent(ServiceModule serviceModule);
+
+    void inject(Application application);
 }

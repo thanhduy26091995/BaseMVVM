@@ -5,6 +5,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.duybui.basemvvmjava.data.network.ApiInterface;
+import com.duybui.basemvvmjava.data.network.ApiRepository;
 import com.duybui.basemvvmjava.utils.AppConstants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -68,5 +69,11 @@ public class ApiModule {
     @Provides
     ApiInterface getAPIInterface(Retrofit retrofit) {
         return retrofit.create(ApiInterface.class);
+    }
+
+    @Provides
+    @Singleton
+    ApiRepository provideAPIRepository(ApiInterface apiInterface) {
+        return new ApiRepository(apiInterface);
     }
 }
