@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -63,4 +65,8 @@ dependencies {
     //butter knife
     implementation "com.jakewharton:butterknife:$butter_knife"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
