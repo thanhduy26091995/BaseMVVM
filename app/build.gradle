@@ -63,4 +63,6 @@ dependencies {
     //butter knife
     implementation "com.jakewharton:butterknife:$butter_knife"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butter_knife"
+    //event bus
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }

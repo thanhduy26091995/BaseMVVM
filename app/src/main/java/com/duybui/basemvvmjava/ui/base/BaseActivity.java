@@ -12,6 +12,8 @@ import com.duybui.basemvvmjava.di.application.ApplicationComponent;
 import com.duybui.basemvvmjava.di.presentation.PresentationComponent;
 import com.duybui.basemvvmjava.di.presentation.PresentationModule;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -37,12 +39,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutRes());
         unbinder = ButterKnife.bind(this);
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
     }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+        if (EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().unregister(this);
+        }
     }
 
     @LayoutRes

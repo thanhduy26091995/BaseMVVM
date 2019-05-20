@@ -2,17 +2,12 @@ package com.duybui.basemvvmjava;
 
 import android.os.Bundle;
 
-import com.duybui.basemvvmjava.data.models.User;
 import com.duybui.basemvvmjava.ui.base.BaseActivity;
 import com.duybui.basemvvmjava.ui.base.DialogsManager;
 import com.duybui.basemvvmjava.ui.base.ServerErrorDialogFragment;
 import com.duybui.basemvvmjava.ui.base.ViewModelFactory;
 import com.duybui.basemvvmjava.ui.users.UserAdapter;
 import com.duybui.basemvvmjava.ui.users.UserViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
 
 import javax.inject.Inject;
 
@@ -55,7 +50,9 @@ public class MainActivity extends BaseActivity {
         //show error message
         userViewModel.getError().observe(this, error ->
                 dialogsManager.showDialog(ServerErrorDialogFragment.newInstance("Error", error)));
+
     }
+
 
     private void setupRecyclerView() {
         mRecycler.setLayoutManager(new LinearLayoutManager(this));
