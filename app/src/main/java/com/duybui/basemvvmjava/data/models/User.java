@@ -12,6 +12,12 @@ public class User {
     @SerializedName("picture")
     private Picture picture;
 
+    public User(String email, String phone, String gender, Picture picture) {
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.picture = picture;
+    }
 
     public String getEmail() {
         return email;
