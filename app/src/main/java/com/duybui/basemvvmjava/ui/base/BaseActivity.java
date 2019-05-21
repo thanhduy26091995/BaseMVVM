@@ -39,9 +39,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutRes());
         unbinder = ButterKnife.bind(this);
-        if (!EventBus.getDefault().isRegistered(this)){
-            EventBus.getDefault().register(this);
-        }
     }
 
 
@@ -49,9 +46,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
-        if (EventBus.getDefault().isRegistered(this)){
-            EventBus.getDefault().unregister(this);
-        }
     }
 
     @LayoutRes
