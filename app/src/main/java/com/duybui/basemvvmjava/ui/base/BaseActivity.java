@@ -1,5 +1,6 @@
 package com.duybui.basemvvmjava.ui.base;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.LayoutRes;
@@ -16,6 +17,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -53,5 +55,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private ApplicationComponent getApplicationComponent() {
         return ((MyApplication) getApplication()).getApplicationComponent();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

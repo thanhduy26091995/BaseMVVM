@@ -8,4 +8,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextAppearance.FontPathRegular" parent="android:TextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/IBMPlexSans-Regular.ttf</item>
+    </style>
+
+    <style name="TextAppearance.FontPathSemiBold" parent="android:TextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/IBMPlexSans-SemiBold.ttf</item>
+    </style>
+
+    <style name="TextAppearance.FontPathBold" parent="android:TextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/IBMPlexSans-Bold.ttf</item>
+    </style>
+
+    <style name="TextAppearance.FontPathMedium" parent="android:TextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/IBMPlexSans-Medium.ttf</item>
+    </style>
+
 </resources>
