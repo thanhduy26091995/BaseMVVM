@@ -41,6 +41,8 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getPresentationComponent().inject(this);
         setupRecyclerView();
+
+
         userViewModel = ViewModelProviders.of(this, viewModelFactory).get(UserViewModel.class);
         //call API to get data
         userViewModel.getRandomUser(10);
