@@ -2,6 +2,9 @@ package com.duybui.basemvvmjava;
 
 import android.os.Bundle;
 
+import android.util.Log;
+import androidx.lifecycle.Observer;
+import com.duybui.basemvvmjava.data.models.User;
 import com.duybui.basemvvmjava.ui.base.BaseActivity;
 import com.duybui.basemvvmjava.ui.base.DialogsManager;
 import com.duybui.basemvvmjava.ui.base.ServerErrorDialogFragment;
@@ -15,6 +18,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
@@ -46,8 +51,10 @@ public class MainActivity extends BaseActivity {
         //call API to get data
         userViewModel.getRandomUser(10);
         //listen live data
-        userViewModel.getUserList().observe(this, users ->
-                userAdapter.setData(users));
+        userViewModel.getUserList().observe(this, users -> {
+            System.out.println("LOAD DATA");
+            userAdapter.setData(users);
+        });
         //show error message
         userViewModel.getError().observe(this, error ->
                 dialogsManager.showDialog(ServerErrorDialogFragment.newInstance("Error", error)));
