@@ -27,6 +27,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            dimension "default"
+            applicationIdSuffix '.dev'
+            resValue "string", "app_name", "Dev " + project.property("appName")
+        }
+
+        production {
+            dimension "default"
+            resValue "string", "app_name", project.property("appName")
+        }
+    }
 }
 
 def retrofitVersion = '2.4.0'
