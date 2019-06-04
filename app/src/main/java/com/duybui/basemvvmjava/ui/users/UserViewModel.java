@@ -2,6 +2,7 @@ package com.duybui.basemvvmjava.ui.users;
 
 import android.app.Application;
 
+import android.util.Log;
 import com.duybui.basemvvmjava.data.models.User;
 import com.duybui.basemvvmjava.data.network.ApiFunction;
 import com.duybui.basemvvmjava.data.network.ApiRepository;
