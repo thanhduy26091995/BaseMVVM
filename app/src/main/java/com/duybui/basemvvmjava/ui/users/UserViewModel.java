@@ -38,6 +38,7 @@ public class UserViewModel extends BaseViewModel {
     public void getRandomUser(int number) {
         apiRepository.getRandomUser(number);
     }
+
 //    public void getRandomUser(int number) {
 //        apiInterface.getRandomUser(number)
 //                .subscribeOn(Schedulers.io())
