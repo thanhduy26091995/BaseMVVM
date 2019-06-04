@@ -38,30 +38,6 @@ public class UserViewModel extends BaseViewModel {
     public void getRandomUser(int number) {
         apiRepository.getRandomUser(number);
     }
-//    public void getRandomUser(int number) {
-//        apiInterface.getRandomUser(number)
-//                .subscribeOn(Schedulers.io())
-//                .map(RandomUserResponse::getUsers)
-//                .flatMap(Observable::fromIterable)
-//                .filter(user -> user.getGender().equalsIgnoreCase("female"))
-//                .toList()
-//                .observeOn(AndroidSchedulers.mainThread()).subscribe(new SingleObserver<List<User>>() {
-//            @Override
-//            public void onSubscribe(Disposable d) {
-//
-//            }
-//
-//            @Override
-//            public void onSuccess(List<User> value) {
-//                userList.setValue(value);
-//            }
-//
-//            @Override
-//            public void onError(Throwable e) {
-//                setError(e.toString());
-//            }
-//        });
-//    }
 
     public MutableLiveData<List<User>> getUserList() {
         return userList;
