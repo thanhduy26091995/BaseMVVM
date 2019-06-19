@@ -41,6 +41,10 @@ android {
             resValue "string", "app_name", project.property("appName")
         }
     }
+
+    dataBinding{
+        enabled = true
+    }
 }
 
 def retrofitVersion = '2.4.0'

@@ -2,6 +2,7 @@ package com.duybui.basemvvmjava.ui.users;
 
 import android.app.Activity;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.duybui.basemvvmjava.R;
 import com.duybui.basemvvmjava.data.models.User;
+import com.duybui.basemvvmjava.databinding.ItemUserBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,16 +28,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = activity.getLayoutInflater().inflate(R.layout.item_user, viewGroup, false);
-        return new UserViewHolder(itemView);
+        ItemUserBinding binding = DataBindingUtil.inflate(activity.getLayoutInflater(), R.layout.item_user,
+                viewGroup, false);
+        return new UserViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int i) {
         User user = userList.get(i);
-        holder.mTvEmail.setText(user.getEmail());
-        holder.mTvPhone.setText(user.getPhone());
-        holder.mTvGender.setText(user.getGender());
+        holder.bindData(user);
     }
 
     @Override
@@ -50,15 +51,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder {
-        private TextView mTvEmail, mTvPhone, mTvGender;
-        private ImageView mIvAvatar;
+        ItemUserBinding itemUserBinding;
 
-        public UserViewHolder(@NonNull View itemView) {
-            super(itemView);
+        public UserViewHolder(ItemUserBinding itemUserBinding) {
+            super(itemUserBinding.getRoot());
+            this.itemUserBinding = itemUserBinding;
+        }
 
-            mTvEmail = itemView.findViewById(R.id.tv_email);
-            mTvPhone = itemView.findViewById(R.id.tv_phone);
-            mTvGender = itemView.findViewById(R.id.tv_gender);
+        public void bindData(User user) {
+            itemUserBinding.setUser(user);
         }
     }
 }
